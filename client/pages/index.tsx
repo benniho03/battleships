@@ -1,21 +1,30 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client'
 
 const socket = io('http://localhost:3001')
 
 export default function Home() {
 
+  const [serverStatus, setServerStatus] = useState("")
+
   useEffect(() => {
     socket.emit('hello')
   
     socket.on('hello-from-server', () => {
-      console.log("Hi from server")
+      setServerStatus("Server connected")
     })
 
   }, [])
 
+  function sendToServer(){
+    socket.emit('hello') 
+    console.log("sending...")
+  }
+
   return <div>
-      <button>Hi</button>
+      <button onClick={sendToServer}>Hi</button>
+      <div>Server Status: {serverStatus}</div>
     </div>;
+
 }
 
