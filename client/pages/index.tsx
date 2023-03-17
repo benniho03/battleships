@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { io } from 'socket.io-client'
 
-const socket = io('https://localhost:3001')
+const socket = io('http://localhost:3001')
 
 export default function Home() {
 
@@ -11,8 +11,7 @@ export default function Home() {
     socket.on('hello-from-server', () => {
       console.log("Hi from server")
     })
-  
-  
+
   }, [])
 
   return <div>

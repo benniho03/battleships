@@ -11,11 +11,13 @@ const io = new Server(server, {
 })
 
 io.on('connection', (socket) => {
+
+    console.log("Client connected")
+
     socket.on('hello', () => {
         socket.broadcast.emit('hello-from-server', {})
     })
 
-    console.log("Client connected")
 })
 
 server.listen(3001, () => {
