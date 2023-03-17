@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client'
+import Board from './_board';
 
 const socket = io('http://localhost:3001')
 
@@ -24,6 +25,7 @@ export default function Home() {
   return <div>
       <button onClick={sendToServer}>Hi</button>
       <div>Server Status: {serverStatus}</div>
+      <Board />
     </div>;
 
 }
